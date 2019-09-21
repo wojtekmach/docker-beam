@@ -1,8 +1,8 @@
 # built with ./build.sh, do not edit manually
-FROM wojtekmach/erlang:22-alpine
+FROM wojtekmach/erlang:%OTP_VERSION%-alpine
 
-ENV ELIXIR_VERSION="1.9.1" \
-  ELIXIR_SHA256="94daa716abbd4493405fb2032514195077ac7bc73dc2999922f13c7d8ea58777" \
+ENV ELIXIR_VERSION="%ELIXIR_VERSION%" \
+  ELIXIR_SHA256="%ELIXIR_SHA256%" \
   LANG=C.UTF-8
 
 RUN set -xe \

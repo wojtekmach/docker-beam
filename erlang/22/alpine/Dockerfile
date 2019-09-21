@@ -1,9 +1,10 @@
-FROM alpine:3.8
+# built with ./build.sh, do not edit manually
+FROM alpine:3.10
 
 ENV OTP_VERSION="22.1" \
-    OTP_DOWNLOAD_SHA256="7b26f64eb6c712968d8477759fc716d64701d41f6325e8a4d0dd9c31de77284a" \
+    OTP_SHA256="7b26f64eb6c712968d8477759fc716d64701d41f6325e8a4d0dd9c31de77284a" \
     REBAR3_VERSION="3.12.0" \
-    REBAR3_DOWNLOAD_SHA256="8ac45498f03e293bc6342ec431888f9a81a4fb9e1177a69965238d127c00a79e"
+    REBAR3_SHA256="8ac45498f03e293bc6342ec431888f9a81a4fb9e1177a69965238d127c00a79e"
 
 LABEL org.opencontainers.image.version=$OTP_VERSION
 
@@ -13,7 +14,7 @@ RUN set -xe \
 		curl \
 		ca-certificates \
 	&& curl -fSL -o otp-src.tar.gz "$OTP_DOWNLOAD_URL" \
-	&& echo "$OTP_DOWNLOAD_SHA256  otp-src.tar.gz" | sha256sum -c - \
+	&& echo "$OTP_SHA256  otp-src.tar.gz" | sha256sum -c - \
 	&& apk add --no-cache --virtual .build-deps \
 		dpkg-dev dpkg \
 		gcc \
@@ -51,7 +52,7 @@ RUN set -xe \
 	)" \
 	&& REBAR3_DOWNLOAD_URL="https://github.com/erlang/rebar3/archive/${REBAR3_VERSION}.tar.gz" \
 	&& curl -fSL -o rebar3-src.tar.gz "$REBAR3_DOWNLOAD_URL" \
-	&& echo "${REBAR3_DOWNLOAD_SHA256}  rebar3-src.tar.gz" | sha256sum -c - \
+	&& echo "${REBAR3_SHA256}  rebar3-src.tar.gz" | sha256sum -c - \
 	&& mkdir -p /usr/src/rebar3-src \
 	&& tar -xzf rebar3-src.tar.gz -C /usr/src/rebar3-src --strip-components=1 \
 	&& rm rebar3-src.tar.gz \
