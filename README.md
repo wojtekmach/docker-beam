@@ -8,6 +8,11 @@ Docker images for the BEAM ecosystem.
 
     ./build.sh [push]
 
+## Credits
+
+Dockerfile templates are based on https://github.com/c0b/docker-elixir and
+https://github.com/erlang/docker-erlang-otp.
+
 ## License
 
 Copyright (c) 2019 Wojciech Mach
