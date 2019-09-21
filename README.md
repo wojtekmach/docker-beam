@@ -1,6 +1,6 @@
 # docker-beam
 
-**Experimental**
+**WARNING: this project is experimental, it's recommended to use official images instead**
 
 Docker images for the BEAM ecosystem.
 
