@@ -17,6 +17,8 @@ while IFS= read -r line; do
     | sed "s/%ELIXIR_SHA256%/${ELIXIR_SHA256}/g" \
     | sed "s/%REBAR3_VERSION%/${REBAR3_VERSION}/g" \
     | sed "s/%REBAR3_SHA256%/${REBAR3_SHA256}/g" \
+    | sed "s/%LFE_VERSION%/${LFE_VERSION}/g" \
+    | sed "s/%LFE_SHA256%/${LFE_SHA256}/g" \
     > $DIR/Dockerfile
 
   sh -c "cd ${DIR} && docker build . -t ${ID}"
