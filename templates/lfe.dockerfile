@@ -2,7 +2,7 @@
 FROM wojtekmach/erlang:22-alpine
 
 ENV LFE_VERSION="1.2.1" \
-  LFE_SHA256="1967c6d3f604ea3ba5013b021426d8a28f45eee47fd208109ef116af2e74ab23" \
+  LFE_SHA256="%LFE_SHA256%" \
   LANG=C.UTF-8
 
 RUN set -xe \
