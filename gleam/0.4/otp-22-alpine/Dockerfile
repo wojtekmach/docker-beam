@@ -1,5 +1,5 @@
 # built with ./build.sh, do not edit manually
-FROM wojtekmach/erlang:22-alpine
+FROM wojtekmach/erlang:22-alpine AS builder
 
 ENV GLEAM_VERSION="0.4.0" \
   GLEAM_SHA256="00af1865422ef8c57bab7b7f234b03b27cacd69f6eb23375615c60cb089458e0" \
@@ -24,8 +24,12 @@ RUN set -xe \
   && cd /usr/local/src/gleam \
   && make build \
   && make install
+
+FROM wojtekmach/erlang:22-alpine
+
 RUN set -xe \
-  # && apk del .build-deps \
-  && cp /root/.cargo/bin/gleam /usr/local/bin
+  && apk add -vv --no-cache so:libgcc_s.so.1
+
+COPY --from=builder /root/.cargo/bin/gleam /usr/local/bin
 
 CMD ["gleam"]
